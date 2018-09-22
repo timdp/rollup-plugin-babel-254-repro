@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "rollup -c"
+    "build": "yarn run build:working && yarn run build:failing",
+    "build:working": "TARGET=working rollup -c",
+    "build:failing": "TARGET=failing rollup -c"
   },
   "dependencies": {
     "@babel/core": "^7.1.0",
@@ -13,5 +15,16 @@
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "^9.1.8",
     "rollup-plugin-node-resolve": "^3.4.0"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "debug": true,
+          "useBuiltIns": "usage"
+        }
+      ]
+    ]
   }
 }
